@@ -1,0 +1,9 @@
+{
+  "name": "billionaire-sandbox",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "data": "node scripts/build-roster.mjs",
+    "start": "python -m http.server 8080"
+  }
+}

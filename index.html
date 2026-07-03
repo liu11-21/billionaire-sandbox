@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d0c">
+  <title>億萬人生 Billionaire Sandbox</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="億萬人生首頁">
+      <span class="brand-mark">B</span>
+      <span><strong>億萬人生</strong><small>BILLIONAIRE SANDBOX</small></span>
+    </a>
+    <div class="year-chip"><span class="live-dot"></span> 遊戲年度 <strong id="game-year">2026</strong></div>
+    <button class="ghost-button" id="change-character">切換角色</button>
+  </header>
+
+  <main>
+    <section class="hero-shell">
+      <div class="identity-card">
+        <div class="rank-kicker" id="rank-kicker">FORBES 2026 · #1</div>
+        <div class="avatar" id="avatar">EM</div>
+        <div>
+          <p class="eyebrow">你正在扮演</p>
+          <h1 id="player-name">選擇一位富豪</h1>
+          <p class="muted" id="player-detail">完整 3,428 人角色庫</p>
+        </div>
+      </div>
+      <div class="wealth-panel">
+        <p class="eyebrow">模擬淨資產</p>
+        <div class="wealth-number" id="net-worth">$0</div>
+        <div class="wealth-change" id="wealth-change">選擇角色開始遊戲</div>
+        <div class="allocation-bar" aria-label="資產配置">
+          <span id="bar-empire"></span><span id="bar-investments"></span><span id="bar-cash"></span>
+        </div>
+        <div class="allocation-legend">
+          <span><i class="dot empire"></i>核心事業</span>
+          <span><i class="dot investments"></i>投資</span>
+          <span><i class="dot cash"></i>現金</span>
+        </div>
+      </div>
+      <div class="action-panel">
+        <p class="eyebrow">私人銀行</p>
+        <div class="metric"><span>可用現金</span><strong id="cash">$0</strong></div>
+        <div class="metric"><span>年被動收入</span><strong id="income">$0</strong></div>
+        <button class="primary-button" id="next-year">推進一年 <span>→</span></button>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="遊戲功能">
+      <button class="tab active" data-tab="market">全球商城</button>
+      <button class="tab" data-tab="invest">投資市場</button>
+      <button class="tab" data-tab="portfolio">我的帝國</button>
+      <button class="tab" data-tab="rankings">富豪榜</button>
+    </nav>
+
+    <section class="view active" id="market-view">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE WORLD IS YOUR CART</p><h2>想得到，就買得到。</h2></div>
+        <div class="category-filters" id="shop-filters"></div>
+      </div>
+      <div class="shop-grid" id="shop-grid"></div>
+      <form class="custom-purchase" id="custom-purchase">
+        <div><p class="eyebrow">買下任何東西</p><h3>清單上沒有？自己開價。</h3></div>
+        <label>品項名稱<input id="custom-name" maxlength="40" placeholder="例如：一座月球基地" required></label>
+        <label>價格（美元）<input id="custom-price" type="number" min="1" step="1" placeholder="1000000000" required></label>
+        <button class="secondary-button" type="submit">完成交易</button>
+      </form>
+    </section>
+
+    <section class="view" id="invest-view">
+      <div class="section-heading">
+        <div><p class="eyebrow">CAPITAL NEVER SLEEPS</p><h2>讓資本替你工作。</h2></div>
+        <p class="section-note">每推進一年結算報酬；高報酬伴隨高波動。所有數字皆為遊戲模擬。</p>
+      </div>
+      <div class="investment-grid" id="investment-grid"></div>
+    </section>
+
+    <section class="view" id="portfolio-view">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR EMPIRE</p><h2>資產與收藏。</h2></div>
+        <button class="ghost-button" id="reset-game">重設本角色進度</button>
+      </div>
+      <div class="portfolio-summary" id="portfolio-summary"></div>
+      <div class="ledger">
+        <div><h3>投資部位</h3><div id="holdings-list" class="list-stack"></div></div>
+        <div><h3>收藏與消費</h3><div id="inventory-list" class="list-stack"></div></div>
+        <div><h3>年度紀錄</h3><div id="event-list" class="list-stack timeline"></div></div>
+      </div>
+    </section>
+
+    <section class="view" id="rankings-view">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE BILLIONAIRE LEAGUE</p><h2>你現在排第幾？</h2></div>
+        <p class="section-note">以 2026 榜單原始淨資產與你的模擬淨資產比較。</p>
+      </div>
+      <div class="ranking-card" id="ranking-card"></div>
+      <div class="source-note">
+        <strong>資料與模擬說明</strong>
+        <p>角色與初始資產採 Forbes 2026 年度榜單，共 3,428 人、總資產約 20.1 兆美元，資料基準日為 2026-03-01；名單由 Gapminder CC BY 4.0 資料集整理。投資報酬、流動現金比例與購物價格均為遊戲機制，不代表真實持股、現金或投資建議。</p>
+        <div class="source-links">
+          <a href="https://www.forbes.com/sites/chasewithorn/2026/03/10/2026-worlds-billionaires-list-facts-and-figures/" target="_blank" rel="noreferrer">Forbes 2026 方法</a>
+          <a href="https://www.gapminder.org/data/documentation/billionaires-dataset/" target="_blank" rel="noreferrer">Gapminder 資料集</a>
+          <a href="https://www.forbes.com/sites/chasewithorn/2026/03/10/2026-worlds-billionaires-list-facts-and-figures/" target="_blank" rel="noreferrer">Forbes 2026 概況</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="character-dialog">
+    <div class="dialog-top">
+      <div><p class="eyebrow">CHOOSE YOUR FORTUNE</p><h2>你想成為誰？</h2></div>
+      <button class="icon-button" id="close-dialog" aria-label="關閉">×</button>
+    </div>
+    <div class="search-row">
+      <input id="character-search" type="search" placeholder="搜尋姓名、國家或產業…" autocomplete="off">
+      <span id="search-count">3,428 位</span>
+    </div>
+    <div class="character-list" id="character-list"></div>
+    <p class="dialog-foot">完整 Forbes 2026 年度榜單 · 可搜尋全部 3,428 位角色</p>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data/roster.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
