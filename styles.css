@@ -119,6 +119,8 @@ h3 { margin-bottom: 8px; }
 .filter-chip.secondary.active { color: var(--acid); border-color: rgba(217,255,67,.5); background: rgba(217,255,67,.09); }
 .filter-chip.brand { padding: 5px 9px; color: #858b83; border-style: dashed; font-size: 9px; }
 .filter-chip.brand.active { color: #111; border-style: solid; border-color: var(--mint); background: var(--mint); }
+.filter-chip.variant { padding: 5px 9px; color: #8ca6a0; border-color: rgba(99,230,190,.2); font-size: 9px; }
+.filter-chip.variant.active { color: #111; border-color: var(--blue); background: var(--blue); font-weight: 800; }
 
 .shop-grid, .investment-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .shop-card, .investment-card {
@@ -132,6 +134,9 @@ h3 { margin-bottom: 8px; }
 .card-category { color: var(--acid); font: 700 10px/1 monospace; letter-spacing: .13em; text-transform: uppercase; }
 .brand-name { position: relative; display: block; margin-top: 18px; color: var(--muted); font: 800 11px/1 monospace; letter-spacing: .08em; text-transform: uppercase; }
 .shop-card h3, .investment-card h3 { position: relative; margin: 7px 0 6px; font-family: Georgia, "Noto Serif TC", serif; font-size: 25px; }
+.model-original { position: relative; display: block; color: #777d76; font: 9px/1.4 monospace; }
+.variant-name { position: relative; display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; padding: 6px 8px; color: var(--mint); border: 1px solid rgba(99,230,190,.25); border-radius: 7px; font-size: 10px; }
+.variant-name small { color: #70766f; font: 8px monospace; }
 .card-copy { position: relative; color: var(--muted); font-size: 11px; line-height: 1.6; }
 .purchase-panel { position: relative; margin-top: 26px; padding-top: 15px; border-top: 1px solid var(--line); }
 .unit-price { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 10px; }
