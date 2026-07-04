@@ -60,15 +60,22 @@
     <section class="view active" id="market-view">
       <div class="section-heading">
         <div><p class="eyebrow">THE WORLD IS YOUR CART</p><h2>想得到，就買得到。</h2></div>
-        <div class="category-filters" id="shop-filters"></div>
+        <div class="shop-browser">
+          <div class="shop-search-wrap">
+            <input id="shop-search" type="search" placeholder="搜尋品牌或型號…" autocomplete="off">
+            <span id="shop-result-count">0 個型號</span>
+          </div>
+          <div class="category-filters" id="shop-filters"></div>
+        </div>
       </div>
       <div class="shop-grid" id="shop-grid"></div>
-      <form class="custom-purchase" id="custom-purchase">
-        <div><p class="eyebrow">買下任何東西</p><h3>清單上沒有？自己開價。</h3></div>
-        <label>品項名稱<input id="custom-name" maxlength="40" placeholder="例如：一座月球基地" required></label>
-        <label>價格（美元）<input id="custom-price" type="number" min="1" step="1" placeholder="1000000000" required></label>
-        <button class="secondary-button" type="submit">完成交易</button>
-      </form>
+      <p class="catalog-note">商品價格為美元遊戲估價；選配、稅費、地區定價、限量配額與二手溢價未納入。品牌與型號參考
+        <a href="https://www.apple.com/shop/buy-iphone" target="_blank" rel="noreferrer">Apple</a>、
+        <a href="https://www.ferrari.com/en-US/auto/car-part-services-warranty-maintenance" target="_blank" rel="noreferrer">Ferrari</a>、
+        <a href="https://gulfstream.com/en/aircraft/" target="_blank" rel="noreferrer">Gulfstream</a>、
+        <a href="https://www.rolex.com/watches" target="_blank" rel="noreferrer">Rolex</a>與
+        <a href="https://feadship.nl/fleet-catalog" target="_blank" rel="noreferrer">Feadship</a>官方產品頁，僅用於模擬遊戲識別。
+      </p>
     </section>
 
     <section class="view" id="invest-view">

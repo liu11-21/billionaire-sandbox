@@ -1,22 +1,63 @@
 const roster = window.BILLIONAIRES || [];
 
 const shopItems = [
-  { id: "coffee", icon: "☕", category: "日常", name: "精品咖啡", price: 8, copy: "即使擁有一切，早晨還是需要咖啡。" },
-  { id: "sneakers", icon: "👟", category: "日常", name: "限量球鞋", price: 2400, copy: "全球僅發售 100 雙的收藏款。" },
-  { id: "supercar", icon: "🏎️", category: "交通", name: "限量超跑", price: 3500000, copy: "碳纖維車體、手工引擎，以及沒有意義的極速。" },
-  { id: "jet", icon: "✈️", category: "交通", name: "長程私人飛機", price: 78000000, copy: "臥室、會議室與 14,000 公里航程。" },
-  { id: "yacht", icon: "🛥️", category: "交通", name: "百米超級遊艇", price: 420000000, copy: "含兩座直升機坪與一艘迷你潛艇。" },
-  { id: "island", icon: "🏝️", category: "地產", name: "私人島嶼", price: 85000000, copy: "一整片海岸線，不需要共享定位。" },
-  { id: "tower", icon: "🏙️", category: "地產", name: "曼哈頓摩天樓", price: 2400000000, copy: "73 層辦公、住宅與空中花園。" },
-  { id: "moon", icon: "🌕", category: "地產", name: "月球研究基地", price: 18000000000, copy: "尚未完工，但地址已經足夠有說服力。" },
-  { id: "masterpiece", icon: "🖼️", category: "收藏", name: "博物館級名畫", price: 195000000, copy: "藝術史的一頁，現在掛在你的牆上。" },
-  { id: "dinosaur", icon: "🦖", category: "收藏", name: "暴龍化石", price: 32000000, copy: "一具保存完整、可以鎮住董事會的暴龍。" },
-  { id: "team", icon: "🏀", category: "企業", name: "職業籃球隊", price: 4200000000, copy: "從球員交易到冠軍戒指，全由你決定。" },
-  { id: "studio", icon: "🎬", category: "企業", name: "電影製片廠", price: 7800000000, copy: "片庫、攝影棚與下一個票房宇宙。" },
-  { id: "airline", icon: "🛫", category: "企業", name: "國際航空公司", price: 14500000000, copy: "航線遍及六大洲，附帶大量營運問題。" },
-  { id: "space", icon: "🚀", category: "體驗", name: "繞月旅行", price: 150000000, copy: "七天、兩位賓客，以及真正的地球全景。" },
-  { id: "concert", icon: "🎤", category: "體驗", name: "私人世界巡演", price: 28000000, copy: "把最喜歡的歌手和舞台搬到你的後院。" },
-  { id: "meal", icon: "🍽️", category: "體驗", name: "米其林主廚晚宴", price: 180000, copy: "十二道菜，只招待你指定的十二個人。" },
+  { id: "apple-iphone-17-pro-max", icon: "📱", category: "科技", subcategory: "手機", brand: "Apple", model: "iPhone 17 Pro Max", price: 1199, copy: "Apple 旗艦智慧型手機，遊戲採入門容量估價。" },
+  { id: "apple-iphone-air", icon: "📱", category: "科技", subcategory: "手機", brand: "Apple", model: "iPhone Air", price: 999, copy: "主打輕薄機身的 iPhone 系列。" },
+  { id: "samsung-galaxy-s26-ultra", icon: "📱", category: "科技", subcategory: "手機", brand: "Samsung", model: "Galaxy S26 Ultra", price: 1299, copy: "Galaxy S 系列旗艦大螢幕機型。" },
+  { id: "apple-macbook-pro", icon: "💻", category: "科技", subcategory: "電腦", brand: "Apple", model: "MacBook Pro 16 M4 Max", price: 3999, copy: "高階晶片與 16 吋顯示器配置。" },
+  { id: "apple-vision-pro", icon: "🥽", category: "科技", subcategory: "穿戴", brand: "Apple", model: "Vision Pro", price: 3499, copy: "空間運算頭戴裝置。" },
+
+  { id: "ferrari-12cilindri", icon: "🏎️", category: "汽車", subcategory: "超跑", brand: "Ferrari", model: "12Cilindri", price: 470000, copy: "Ferrari 前置 V12 雙座旗艦跑車。" },
+  { id: "ferrari-sf90-xx", icon: "🏎️", category: "汽車", subcategory: "超跑", brand: "Ferrari", model: "SF90 XX Stradale", price: 890000, copy: "道路版 XX 特別車型，限量生產。" },
+  { id: "ferrari-purosangue", icon: "🚙", category: "汽車", subcategory: "豪華休旅", brand: "Ferrari", model: "Purosangue", price: 430000, copy: "Ferrari 四門四座 V12 車型。" },
+  { id: "lamborghini-revuelto", icon: "🏎️", category: "汽車", subcategory: "超跑", brand: "Lamborghini", model: "Revuelto", price: 608000, copy: "V12 插電式混合動力旗艦超跑。" },
+  { id: "lamborghini-temerario", icon: "🏎️", category: "汽車", subcategory: "超跑", brand: "Lamborghini", model: "Temerario", price: 390000, copy: "V8 雙渦輪插電式混合動力超跑。" },
+  { id: "lamborghini-urus-se", icon: "🚙", category: "汽車", subcategory: "豪華休旅", brand: "Lamborghini", model: "Urus SE", price: 275000, copy: "高性能插電式混合動力休旅車。" },
+  { id: "rolls-royce-phantom-extended", icon: "🚘", category: "汽車", subcategory: "豪華轎車", brand: "Rolls-Royce", model: "Phantom Extended", price: 600000, copy: "長軸旗艦豪華轎車，實際價格高度取決於客製內容。" },
+  { id: "rolls-royce-spectre-ii", icon: "🚘", category: "汽車", subcategory: "豪華轎車", brand: "Rolls-Royce", model: "Spectre Series II", price: 480000, copy: "Rolls-Royce 純電雙門車系。" },
+  { id: "rolls-royce-cullinan-ii", icon: "🚙", category: "汽車", subcategory: "豪華休旅", brand: "Rolls-Royce", model: "Cullinan Series II", price: 470000, copy: "品牌旗艦豪華休旅車。" },
+  { id: "porsche-911-gt3-rs", icon: "🏁", category: "汽車", subcategory: "跑車", brand: "Porsche", model: "911 GT3 RS", price: 250000, copy: "賽道取向的 911 自然進氣車型。" },
+  { id: "porsche-taycan-turbo-gt", icon: "⚡", category: "汽車", subcategory: "電動跑車", brand: "Porsche", model: "Taycan Turbo GT", price: 230000, copy: "高性能純電四門跑車。" },
+  { id: "bugatti-tourbillon", icon: "🏎️", category: "汽車", subcategory: "終極超跑", brand: "Bugatti", model: "Tourbillon", price: 4100000, copy: "Bugatti V16 混合動力旗艦車型。" },
+  { id: "rimac-nevera-r", icon: "⚡", category: "汽車", subcategory: "終極超跑", brand: "Rimac", model: "Nevera R", price: 2500000, copy: "限量高性能純電超跑。" },
+
+  { id: "gulfstream-g800", icon: "✈️", category: "航空", subcategory: "超長程商務機", brand: "Gulfstream", model: "G800", price: 72500000, copy: "官方公布最大航程 8,200 海里。" },
+  { id: "gulfstream-g700", icon: "✈️", category: "航空", subcategory: "超長程商務機", brand: "Gulfstream", model: "G700", price: 81000000, copy: "最多五個客艙生活區的 Gulfstream 旗艦。" },
+  { id: "gulfstream-g600", icon: "✈️", category: "航空", subcategory: "大型商務機", brand: "Gulfstream", model: "G600", price: 58000000, copy: "大型客艙與跨洲航程商務機。" },
+  { id: "bombardier-global-8000", icon: "✈️", category: "航空", subcategory: "超長程商務機", brand: "Bombardier", model: "Global 8000", price: 83000000, copy: "Bombardier 超長程旗艦商務機。" },
+  { id: "bombardier-global-7500", icon: "✈️", category: "航空", subcategory: "超長程商務機", brand: "Bombardier", model: "Global 7500", price: 78000000, copy: "四個客艙生活區的大型商務機。" },
+  { id: "bombardier-challenger-3500", icon: "🛩️", category: "航空", subcategory: "中型商務機", brand: "Bombardier", model: "Challenger 3500", price: 27000000, copy: "超中型商務機，適合區域與跨洲航線。" },
+  { id: "dassault-falcon-10x", icon: "✈️", category: "航空", subcategory: "超長程商務機", brand: "Dassault", model: "Falcon 10X", price: 75000000, copy: "Dassault 新世代超長程旗艦商務機。" },
+  { id: "dassault-falcon-8x", icon: "✈️", category: "航空", subcategory: "大型商務機", brand: "Dassault", model: "Falcon 8X", price: 62000000, copy: "三發動機長程商務機。" },
+  { id: "airbus-ach160", icon: "🚁", category: "航空", subcategory: "直升機", brand: "Airbus", model: "ACH160", price: 17000000, copy: "Airbus Corporate Helicopters 豪華配置版本。" },
+  { id: "bell-525", icon: "🚁", category: "航空", subcategory: "直升機", brand: "Bell", model: "525 Relentless", price: 15000000, copy: "大型雙發動機民用直升機。" },
+
+  { id: "feadship-pi", icon: "🛥️", category: "船艇", subcategory: "超級遊艇", brand: "Feadship", model: "Pi 100m", price: 300000000, copy: "2025 年交付的 100 米純客製超級遊艇。" },
+  { id: "feadship-moonrise", icon: "🛥️", category: "船艇", subcategory: "超級遊艇", brand: "Feadship", model: "Moonrise 99.95m", price: 220000000, copy: "近百米級 Feadship 客製遊艇。" },
+  { id: "feadship-savannah", icon: "🛥️", category: "船艇", subcategory: "超級遊艇", brand: "Feadship", model: "Savannah 83.5m", price: 140000000, copy: "全球首批混合動力超級遊艇代表作。" },
+  { id: "lurssen-kismet", icon: "🛥️", category: "船艇", subcategory: "巨型遊艇", brand: "Lürssen", model: "Kismet 122m", price: 360000000, copy: "122 米級巨型遊艇遊戲估價。" },
+  { id: "lurssen-ahpo", icon: "🛥️", category: "船艇", subcategory: "巨型遊艇", brand: "Lürssen", model: "Ahpo 115m", price: 330000000, copy: "115 米級巨型遊艇遊戲估價。" },
+  { id: "sunseeker-100-yacht", icon: "🛥️", category: "船艇", subcategory: "量產遊艇", brand: "Sunseeker", model: "100 Yacht", price: 15000000, copy: "英國製大型動力遊艇。" },
+  { id: "azimut-grande-36m", icon: "🛥️", category: "船艇", subcategory: "量產遊艇", brand: "Azimut", model: "Grande 36M", price: 18000000, copy: "義大利大型動力遊艇。" },
+
+  { id: "rolex-daytona", icon: "⌚", category: "腕錶", subcategory: "運動錶", brand: "Rolex", model: "Cosmograph Daytona 126500LN", price: 15500, copy: "Rolex 經典計時腕錶，採官方定價級距遊戲估價。" },
+  { id: "rolex-submariner", icon: "⌚", category: "腕錶", subcategory: "潛水錶", brand: "Rolex", model: "Submariner Date 126610LN", price: 10500, copy: "Rolex 經典潛水腕錶。" },
+  { id: "rolex-gmt-master", icon: "⌚", category: "腕錶", subcategory: "兩地時間", brand: "Rolex", model: "GMT-Master II 126710BLNR", price: 11200, copy: "藍黑雙色錶圈兩地時間腕錶。" },
+  { id: "patek-nautilus", icon: "⌚", category: "腕錶", subcategory: "運動錶", brand: "Patek Philippe", model: "Nautilus 5811/1G", price: 70000, copy: "白金材質 Nautilus 自動上鍊腕錶。" },
+  { id: "patek-grandmaster", icon: "⌚", category: "腕錶", subcategory: "複雜功能", brand: "Patek Philippe", model: "Grandmaster Chime 6300GR", price: 4000000, copy: "超複雜功能雙面腕錶遊戲估價。" },
+  { id: "ap-royal-oak", icon: "⌚", category: "腕錶", subcategory: "運動錶", brand: "Audemars Piguet", model: "Royal Oak Jumbo 16202ST", price: 40000, copy: "超薄自動上鍊 Royal Oak 經典型號。" },
+  { id: "richard-mille-rm65", icon: "⌚", category: "腕錶", subcategory: "複雜功能", brand: "Richard Mille", model: "RM 65-01", price: 350000, copy: "自動上鍊雙秒追針計時腕錶。" },
+
+  { id: "hermes-birkin-30", icon: "👜", category: "時尚", subcategory: "手袋", brand: "Hermès", model: "Birkin 30 Togo", price: 12500, copy: "經典皮革手袋，實際價格依皮革與配貨市場而異。" },
+  { id: "chanel-classic-11-12", icon: "👜", category: "時尚", subcategory: "手袋", brand: "Chanel", model: "Classic 11.12", price: 11800, copy: "Chanel 經典翻蓋手袋。" },
+  { id: "lv-speedy-p9", icon: "👜", category: "時尚", subcategory: "手袋", brand: "Louis Vuitton", model: "Speedy P9 Bandoulière 40", price: 11000, copy: "Speedy P9 系列皮革旅行袋。" },
+  { id: "nike-air-jordan-1", icon: "👟", category: "時尚", subcategory: "球鞋", brand: "Nike", model: "Air Jordan 1 High OG", price: 180, copy: "Air Jordan 經典高筒鞋型。" },
+  { id: "loro-piana-open-walk", icon: "👞", category: "時尚", subcategory: "鞋履", brand: "Loro Piana", model: "Open Walk", price: 1100, copy: "Loro Piana 經典麂皮休閒鞋。" },
+
+  { id: "starbucks-latte", icon: "☕", category: "日常", subcategory: "餐飲", brand: "Starbucks", model: "Grande Caffè Latte", price: 6, copy: "一杯大杯拿鐵的遊戲估價。" },
+  { id: "mcdonalds-big-mac", icon: "🍔", category: "日常", subcategory: "餐飲", brand: "McDonald's", model: "Big Mac", price: 6, copy: "經典雙層漢堡的遊戲估價。" },
+  { id: "dom-perignon-2015", icon: "🍾", category: "日常", subcategory: "酒款", brand: "Dom Pérignon", model: "Vintage 2015", price: 300, copy: "年份香檳單瓶遊戲估價。" },
+  { id: "sony-ps5-pro", icon: "🎮", category: "日常", subcategory: "娛樂", brand: "Sony", model: "PlayStation 5 Pro", price: 749, copy: "Sony 高階遊戲主機。" },
 ];
 
 const investments = [
@@ -40,6 +81,9 @@ const money = (value) => {
 };
 
 let currentShopCategory = "全部";
+let currentShopSubcategory = "全部";
+let currentShopBrand = "全部";
+let shopSearch = "";
 let state = null;
 let toastTimer;
 
@@ -129,20 +173,50 @@ function renderHeader() {
 
 function renderShopFilters() {
   const categories = ["全部", ...new Set(shopItems.map((item) => item.category))];
-  $("#shop-filters").innerHTML = categories.map((category) =>
-    `<button class="filter-chip ${category === currentShopCategory ? "active" : ""}" data-category="${category}">${category}</button>`
-  ).join("");
+  const categoryItems = currentShopCategory === "全部" ? shopItems : shopItems.filter((item) => item.category === currentShopCategory);
+  const subcategories = ["全部", ...new Set(categoryItems.map((item) => item.subcategory))];
+  const subcategoryItems = currentShopSubcategory === "全部" ? categoryItems : categoryItems.filter((item) => item.subcategory === currentShopSubcategory);
+  const brands = ["全部", ...new Set(subcategoryItems.map((item) => item.brand))];
+  $("#shop-filters").innerHTML = `
+    <div class="filter-row"><span class="filter-label">品類</span>${categories.map((category) =>
+      `<button class="filter-chip ${category === currentShopCategory ? "active" : ""}" data-category="${category}">${category}</button>`
+    ).join("")}</div>
+    <div class="filter-row subcategory-row"><span class="filter-label">類型</span>${subcategories.map((subcategory) =>
+      `<button class="filter-chip secondary ${subcategory === currentShopSubcategory ? "active" : ""}" data-subcategory="${subcategory}">${subcategory}</button>`
+    ).join("")}</div>
+    <div class="filter-row brand-row"><span class="filter-label">品牌</span>${brands.map((brand) =>
+      `<button class="filter-chip brand ${brand === currentShopBrand ? "active" : ""}" data-brand="${brand}">${brand}</button>`
+    ).join("")}</div>`;
 }
 
 function renderShop() {
   renderShopFilters();
-  const visible = currentShopCategory === "全部" ? shopItems : shopItems.filter((item) => item.category === currentShopCategory);
+  const query = shopSearch.trim().toLowerCase();
+  const visible = shopItems.filter((item) =>
+    (currentShopCategory === "全部" || item.category === currentShopCategory) &&
+    (currentShopSubcategory === "全部" || item.subcategory === currentShopSubcategory) &&
+    (currentShopBrand === "全部" || item.brand === currentShopBrand) &&
+    (!query || [item.brand, item.model, item.category, item.subcategory].some((value) => value.toLowerCase().includes(query)))
+  );
+  $("#shop-result-count").textContent = `${visible.length} 個型號`;
   $("#shop-grid").innerHTML = visible.map((item) => `
     <article class="shop-card" data-icon="${item.icon}">
-      <div><span class="card-category">${item.category}</span><h3>${item.name}</h3><p class="card-copy">${item.copy}</p></div>
-      <div class="card-bottom"><span class="price">${money(item.price)}</span><button class="buy-button" data-buy="${item.id}" ${state && state.cash < item.price ? "disabled" : ""}>買下</button></div>
+      <div><span class="card-category">${item.category} · ${item.subcategory}</span><span class="brand-name">${item.brand}</span><h3>${item.model}</h3><p class="card-copy">${item.copy}</p></div>
+      <div class="purchase-panel">
+        <div class="unit-price"><span>單價</span><strong>${money(item.price)}</strong></div>
+        <div class="quantity-control" aria-label="${item.brand} ${item.model}購買數量">
+          <button data-qty-minus="${item.id}" aria-label="減少${item.brand} ${item.model}數量">−</button>
+          <input type="number" min="1" max="9999" value="1" inputmode="numeric" data-quantity="${item.id}" aria-label="${item.brand} ${item.model}數量">
+          <button data-qty-plus="${item.id}" aria-label="增加${item.brand} ${item.model}數量">＋</button>
+        </div>
+        <div class="card-bottom">
+          <span class="purchase-total"><small>總價</small><strong data-purchase-total="${item.id}">${money(item.price)}</strong></span>
+          <button class="buy-button" data-buy="${item.id}" ${state && state.cash < item.price ? "disabled" : ""}>買 1 個</button>
+        </div>
+      </div>
     </article>
   `).join("");
+  if (!visible.length) $("#shop-grid").innerHTML = `<p class="shop-empty">找不到符合條件的品牌或型號，請調整篩選條件。</p>`;
 }
 
 function renderInvestments() {
@@ -166,10 +240,11 @@ function renderInvestments() {
 function renderPortfolio() {
   if (!state) return;
   const spent = state.inventory.reduce((sum, item) => sum + item.price, 0);
+  const itemCount = state.inventory.reduce((sum, item) => sum + (item.quantity || 1), 0);
   $("#portfolio-summary").innerHTML = [
     ["核心事業", money(state.empire)],
     ["投資組合", money(holdingValue())],
-    ["收藏數量", `${state.inventory.length} 件`],
+    ["收藏數量", `${itemCount.toLocaleString()} 件`],
     ["累計消費", money(spent)],
   ].map(([label, value]) => `<div class="summary-tile"><span>${label}</span><strong>${value}</strong></div>`).join("");
 
@@ -181,7 +256,7 @@ function renderPortfolio() {
   }).join("") : `<p class="empty">還沒有投資。前往投資市場配置你的第一筆資金。</p>`;
 
   $("#inventory-list").innerHTML = state.inventory.length ? [...state.inventory].reverse().slice(0, 30).map((item) =>
-    `<div class="list-row"><span>${item.name}<br>${item.year} 年購入</span><strong>${money(item.price)}</strong></div>`
+    `<div class="list-row"><span>${item.name} × ${(item.quantity || 1).toLocaleString()}<br>${item.year} 年購入 · 單價 ${money(item.unitPrice || item.price)}</span><strong>${money(item.price)}</strong></div>`
   ).join("") : `<p class="empty">金庫目前是空的。全球商城正在等你。</p>`;
 
   $("#event-list").innerHTML = [...state.events].reverse().slice(0, 20).map((event) =>
@@ -217,17 +292,44 @@ function renderAll() {
   save();
 }
 
-function purchase(name, price, id = "custom") {
-  if (!state || !Number.isFinite(price) || price <= 0) return;
-  if (state.cash < price) {
-    showToast(`現金不足，還差 ${money(price - state.cash)}`);
+function purchase(name, unitPrice, id = "custom", quantity = 1) {
+  quantity = Math.max(1, Math.min(9999, Math.floor(Number(quantity))));
+  const totalPrice = unitPrice * quantity;
+  if (!state || !Number.isFinite(unitPrice) || unitPrice <= 0 || !Number.isFinite(totalPrice)) return;
+  if (state.cash < totalPrice) {
+    showToast(`現金不足，還差 ${money(totalPrice - state.cash)}`);
     return;
   }
-  state.cash -= price;
-  state.inventory.push({ id, name, price, year: state.year });
-  state.events.push({ year: state.year, text: `買下「${name}」，花費 ${money(price)}。` });
+  state.cash -= totalPrice;
+  const existing = state.inventory.find((item) =>
+    item.id === id && item.name === name && (item.unitPrice || item.price) === unitPrice
+  );
+  if (existing) {
+    existing.quantity = (existing.quantity || 1) + quantity;
+    existing.price += totalPrice;
+    existing.year = state.year;
+  } else {
+    state.inventory.push({ id, name, unitPrice, quantity, price: totalPrice, year: state.year });
+  }
+  state.events.push({ year: state.year, text: `買下「${name}」× ${quantity.toLocaleString()}，花費 ${money(totalPrice)}。` });
   renderAll();
-  showToast(`交易完成：${name}`);
+  showToast(`交易完成：${name} × ${quantity.toLocaleString()}`);
+}
+
+function updateShopQuantity(id, rawQuantity) {
+  const item = shopItems.find((candidate) => candidate.id === id);
+  if (!item) return;
+  const quantity = Math.max(1, Math.min(9999, Math.floor(Number(rawQuantity) || 1)));
+  const input = document.querySelector(`[data-quantity="${id}"]`);
+  const total = item.price * quantity;
+  if (input) input.value = quantity;
+  const totalLabel = document.querySelector(`[data-purchase-total="${id}"]`);
+  if (totalLabel) totalLabel.textContent = money(total);
+  const buyButton = document.querySelector(`[data-buy="${id}"]`);
+  if (buyButton) {
+    buyButton.textContent = `買 ${quantity.toLocaleString()} 個`;
+    buyButton.disabled = Boolean(state && state.cash < total);
+  }
 }
 
 function invest(id, amount) {
@@ -318,11 +420,35 @@ document.addEventListener("click", (event) => {
     if (tab.dataset.tab === "rankings") renderRankings();
   }
   const filter = event.target.closest("[data-category]");
-  if (filter) { currentShopCategory = filter.dataset.category; renderShop(); }
+  if (filter) {
+    currentShopCategory = filter.dataset.category;
+    currentShopSubcategory = "全部";
+    currentShopBrand = "全部";
+    renderShop();
+  }
+  const subfilter = event.target.closest("[data-subcategory]");
+  if (subfilter) {
+    currentShopSubcategory = subfilter.dataset.subcategory;
+    currentShopBrand = "全部";
+    renderShop();
+  }
+  const brandFilter = event.target.closest("[data-brand]");
+  if (brandFilter) { currentShopBrand = brandFilter.dataset.brand; renderShop(); }
+  const minus = event.target.closest("[data-qty-minus]");
+  if (minus) {
+    const id = minus.dataset.qtyMinus;
+    updateShopQuantity(id, Number(document.querySelector(`[data-quantity="${id}"]`).value) - 1);
+  }
+  const plus = event.target.closest("[data-qty-plus]");
+  if (plus) {
+    const id = plus.dataset.qtyPlus;
+    updateShopQuantity(id, Number(document.querySelector(`[data-quantity="${id}"]`).value) + 1);
+  }
   const buy = event.target.closest("[data-buy]");
   if (buy) {
     const item = shopItems.find((candidate) => candidate.id === buy.dataset.buy);
-    purchase(item.name, item.price, item.id);
+    const quantity = Number(document.querySelector(`[data-quantity="${item.id}"]`).value);
+    purchase(`${item.brand} ${item.model}`, item.price, item.id, quantity);
   }
   const investment = event.target.closest("[data-invest]");
   if (investment) {
@@ -333,15 +459,19 @@ document.addEventListener("click", (event) => {
   if (person) choosePerson(person.dataset.person);
 });
 
+document.addEventListener("input", (event) => {
+  if (event.target.matches("[data-quantity]")) updateShopQuantity(event.target.dataset.quantity, event.target.value);
+});
+
+$("#shop-search").addEventListener("input", (event) => {
+  shopSearch = event.target.value;
+  renderShop();
+});
+
 $("#character-search").addEventListener("input", (event) => renderCharacterList(event.target.value));
 $("#change-character").addEventListener("click", () => openCharacterDialog());
 $("#close-dialog").addEventListener("click", () => $("#character-dialog").close());
 $("#next-year").addEventListener("click", advanceYear);
-$("#custom-purchase").addEventListener("submit", (event) => {
-  event.preventDefault();
-  purchase($("#custom-name").value.trim(), Number($("#custom-price").value));
-  event.target.reset();
-});
 $("#reset-game").addEventListener("click", () => {
   if (!state || !confirm(`確定要重設 ${selectedPerson().name} 的所有遊戲進度？`)) return;
   state = defaultState(selectedPerson());
