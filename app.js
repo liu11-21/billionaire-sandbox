@@ -1,4 +1,5 @@
 const roster = window.BILLIONAIRES || [];
+const zhTwNames = window.ZH_TW_NAMES || {};
 
 const shopItems = [
   { id: "apple-iphone-17-pro-max", icon: "📱", category: "科技", subcategory: "手機", brand: "Apple", model: "iPhone 17 Pro Max", price: 1199, copy: "Apple 旗艦智慧型手機，遊戲採入門容量估價。" },
@@ -91,6 +92,15 @@ function initials(name) {
   return name.split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
 }
 
+function localizedName(person) {
+  return zhTwNames[person.name] || person.name;
+}
+
+function bilingualName(person) {
+  const chinese = zhTwNames[person.name];
+  return chinese ? `${chinese}（${person.name}）` : person.name;
+}
+
 function defaultState(person) {
   const total = person.worth * 1e9;
   return {
@@ -101,7 +111,7 @@ function defaultState(person) {
     empire: total * .92,
     holdings: {},
     inventory: [],
-    events: [{ year: 2026, text: `以 Forbes #${person.rank} 的身分開始遊戲。` }],
+    events: [{ year: 2026, text: `以 ${localizedName(person)}、Forbes #${person.rank} 的身分開始遊戲。` }],
     lastChange: 0,
   };
 }
@@ -145,7 +155,7 @@ function choosePerson(id) {
   localStorage.setItem("billionaire-sandbox:last-person", id);
   $("#character-dialog").close();
   renderAll();
-  showToast(`現在，你是 ${person.name}`);
+  showToast(`現在，你是 ${localizedName(person)}`);
 }
 
 function renderHeader() {
@@ -157,8 +167,8 @@ function renderHeader() {
   $("#game-year").textContent = state.year;
   $("#rank-kicker").textContent = `FORBES 2026 · #${person.rank}`;
   $("#avatar").textContent = initials(person.name);
-  $("#player-name").textContent = person.name;
-  $("#player-detail").textContent = `${person.industry} · ${person.company || person.country}`;
+  $("#player-name").textContent = localizedName(person);
+  $("#player-detail").textContent = `${zhTwNames[person.name] ? `${person.name} · ` : ""}${person.industry} · ${person.company || person.country}`;
   $("#net-worth").textContent = money(total);
   $("#cash").textContent = money(state.cash);
   $("#income").textContent = money(passiveIncome());
@@ -273,13 +283,13 @@ function renderRankings() {
   $("#ranking-card").innerHTML = `
     <div class="rank-hero">
       <div class="rank-number">#${rank.toLocaleString()}</div>
-      <div><h3>${selectedPerson().name}</h3><p>${rank < selectedPerson().rank ? `上升 ${selectedPerson().rank - rank} 名` : rank > selectedPerson().rank ? `下降 ${rank - selectedPerson().rank} 名` : "維持原始名次"}</p></div>
+      <div><h3>${bilingualName(selectedPerson())}</h3><p>${rank < selectedPerson().rank ? `上升 ${selectedPerson().rank - rank} 名` : rank > selectedPerson().rank ? `下降 ${rank - selectedPerson().rank} 名` : "維持原始名次"}</p></div>
       <div class="rank-net">${money(total)}</div>
     </div>
     <div class="rank-neighbors">
-      ${before ? `<div class="list-row"><span>#${Math.max(1, rank - 1)} ${before.name}</span><strong>${money(before.worth * 1e9)}</strong></div>` : ""}
+      ${before ? `<div class="list-row"><span>#${Math.max(1, rank - 1)} ${bilingualName(before)}</span><strong>${money(before.worth * 1e9)}</strong></div>` : ""}
       <div class="list-row"><span>#${rank} 你</span><strong>${money(total)}</strong></div>
-      ${after ? `<div class="list-row"><span>#${Math.min(roster.length, rank + 1)} ${after.name}</span><strong>${money(after.worth * 1e9)}</strong></div>` : ""}
+      ${after ? `<div class="list-row"><span>#${Math.min(roster.length, rank + 1)} ${bilingualName(after)}</span><strong>${money(after.worth * 1e9)}</strong></div>` : ""}
     </div>`;
 }
 
@@ -390,14 +400,14 @@ function advanceYear() {
 function renderCharacterList(query = "") {
   const normalized = query.trim().toLowerCase();
   const matches = roster.filter((person) =>
-    [person.name, person.country, person.industry, person.company].some((value) => String(value).toLowerCase().includes(normalized))
+    [person.name, zhTwNames[person.name], person.country, person.industry, person.company].some((value) => String(value || "").toLowerCase().includes(normalized))
   );
   $("#search-count").textContent = `${matches.length.toLocaleString()} 位`;
   const visible = matches.slice(0, 120);
   $("#character-list").innerHTML = visible.map((person) => `
     <button class="character-row" data-person="${person.id}">
       <span class="character-rank">#${person.rank}</span>
-      <span><span class="character-name">${person.name}</span><br><span class="character-meta">${person.company || person.industry}</span></span>
+      <span><span class="character-name">${localizedName(person)}</span>${zhTwNames[person.name] ? `<br><span class="english-name">${person.name}</span>` : ""}<br><span class="character-meta">${person.company || person.industry}</span></span>
       <span class="character-meta">${person.country} · ${person.industry}</span>
       <span class="character-worth">${money(person.worth * 1e9)}</span>
     </button>
@@ -473,7 +483,7 @@ $("#change-character").addEventListener("click", () => openCharacterDialog());
 $("#close-dialog").addEventListener("click", () => $("#character-dialog").close());
 $("#next-year").addEventListener("click", advanceYear);
 $("#reset-game").addEventListener("click", () => {
-  if (!state || !confirm(`確定要重設 ${selectedPerson().name} 的所有遊戲進度？`)) return;
+  if (!state || !confirm(`確定要重設 ${localizedName(selectedPerson())} 的所有遊戲進度？`)) return;
   state = defaultState(selectedPerson());
   renderAll();
   showToast("角色進度已重設");
